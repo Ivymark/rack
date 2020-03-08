@@ -311,19 +311,19 @@ module Rack
           rfc2822(value[:expires].clone.gmtime) if value[:expires]
         secure = "; secure"  if value[:secure]
         httponly = "; HttpOnly" if (value.key?(:httponly) ? value[:httponly] : value[:http_only])
-        same_site =
-          case value[:same_site]
-          when false, nil
-            nil
-          when :none, 'None', :None
-            '; SameSite=None'
-          when :lax, 'Lax', :Lax
-            '; SameSite=Lax'.freeze
-          when true, :strict, 'Strict', :Strict
-            '; SameSite=Strict'.freeze
-          else
-            raise ArgumentError, "Invalid SameSite value: #{value[:same_site].inspect}"
-          end
+        same_site = '; SameSite=None'
+          # case value[:same_site]
+          # when false, nil
+          #   nil
+          # when :none, 'None', :None
+          #   '; SameSite=None'
+          # when :lax, 'Lax', :Lax
+          #   '; SameSite=Lax'.freeze
+          # when true, :strict, 'Strict', :Strict
+          #   '; SameSite=Strict'.freeze
+          # else
+          #   raise ArgumentError, "Invalid SameSite value: #{value[:same_site].inspect}"
+          # end
         value = value[:value]
       end
       value = [value] unless Array === value
