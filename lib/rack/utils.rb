@@ -309,7 +309,7 @@ module Rack
         # RFC 6265
         expires = "; expires=" +
           rfc2822(value[:expires].clone.gmtime) if value[:expires]
-        secure = "; secure"  if value[:secure]
+        secure = "; secure" # if value[:secure]
         httponly = "; HttpOnly" if (value.key?(:httponly) ? value[:httponly] : value[:http_only])
         same_site = '; SameSite=None'
           # case value[:same_site]
